@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
+        <link rel="stylesheet" href="./style.css" />
+        <title>타이틀 머하지</title>
+    </head>
+    <body>
+        <div class="main">
+            <div class="background"></div>
+            <div class="frame"></div>
+            <div class="portrait"><img id="portrait" src="./StandingCG/Milletian.png"></div>
+            <div class="Box">
+                <div class="dialogueBox">
+                    <div>
+                        <div id="name" style="display: none;">Vesmir</div>
+                        <div id="dialogue">(무겁고 금방이라도 흩어질 듯한 분위기의 이가 가만히 서서 어떤 미동도 없이 허공을 응시하고 있다.<br>바람결에 흔들리는 붉은 빛의 머리칼에서는 삶의 무게가,<br>어디를 보는 것인지 알 수 없는 짙게 가라앉은 녹색의 눈에서는 세월의 흐름이 느껴진다.<br>눈이 마주치면 세월의 흐름도, 삶의 무게도 바람과 함께 흩어지며<br>녹색의 눈은 생명을 머금고 붉은 빛의 머리칼에선 자유로움이 흩날린다.<br>흩어질 것만 같던 이는 다시금 이 세상에 굳건히 서있다.)</div>
+                    </div>
+                    <div class="dialogueBtn">
+                        <button id="logContinue" style="display: none;">계속하기</button>
+                        <button id="logStart" style="display: inline-block;" onclick="startDialog();">대화를 한다</button>
+                        <button id="logEnd" style="display: inline-block;" onclick="endDialog();">대화 끝내기</button>
+                    </div>
+                </div>
+                <div id="keywordBox" style="display: none;">
+                    <div class="keywordPages">
+                        <div class="keywordPage" id="BasicConversation" style="display: block;" data-page="1">
+                            <p style="text-align: center;"><br>**기초회화**<br></p>
+                            <button class="keywordName" id="keyTalk" onclick="printdialog(this.id);">개인적인 이야기</button>
+                            <p>약간은 사적인 내용을 주제로 이야기를 나누어 보자.</p>
+                            <button class="keywordName" id="keyRumor" onclick="printdialog(this.id);">근처의 소문</button>
+                            <p>이 주변의 소문이나 인물에 대한 내용을 주제로 이야기를 나누어 보자.</p>
+                            <button class="keywordName" id="keySkill" onclick="printdialog(this.id);">스킬에 대하여</button>
+                            <p>스킬을 중심으로 대화한다.<br>스킬의 입수방법이나 수련방법에 대해 알 수 있다.</p>
+                            <button class="keywordName" id="keyParttime" onclick="printdialog(this.id);">아르바이트에 대하여</button>
+                            <p>돈이나 음식을 얻을 많은 일거리에 대해서 대화한다. 운이 좋다면 일감을 받을 수도 있다.</p>
+                            <button class="keywordName" id="keyClass" onclick="printdialog(this.id);">수업과 수련에 대하여</button>
+                            <p>학교의 선생과 대화해보자.<br>학교에서 공부를 할때 사용</p>
+                        </div>
+                        <div class="keywordPage" style="display: none;" data-page="2">
+                            <p>한다.</p>
+                        </div>
+                        <div class="keywordPage" id="MediumConversation" style="display: none;" data-page="3">
+                            <p style="text-align: center;"><br>**중급회화**<br></p>
+                            <button class="keywordName" id="keyGeneralstore" onclick="printdialog(this.id);">잡화점</button>
+                            <p>일상생활에서 필요한 다양한 물건을 파는 장소. 잡화점의 위치에 대해서 물어본다.</p>
+                            <button class="keywordName" id="keyGrocerystore" onclick="printdialog(this.id);">식료품점</button>
+                            <p>이 마을의 식료품점에 대해 대화한다. 장소나 정보를 얻을 수 있다.</p>
+                            <button class="keywordName" id="keyHealerhouse" onclick="printdialog(this.id);">힐러의 집</button>
+                            <p>마을의 힐러가 있는 곳에 대해 정보를 얻을 수 있다.</p>
+                            <button class="keywordName" id="keyInn" onclick="printdialog(this.id);">여관</button>
+                            <p>이 마을의 여관의 위치에 대해 대화한다.</p>
+                            <button class="keywordName" id="keyBank" onclick="printdialog(this.id);">뱅크</button>
+                            <p>물건을 보관하는 곳 이 마을의 뱅크에 관래서 정보를 얻을 수 있다.</p>
+                        </div>
+                        <div class="keywordPage" style="display: none;" data-page="4">
+                            <button class="keywordName" id="keyForge" onclick="printdialog(this.id);">대장간</button>
+                            <p>무기나 갑옷과 같은 장비를 구하는 장소.</p>
+                            <button class="keywordName" id="keyRestSkill" onclick="printdialog(this.id);">휴식 스킬</button>
+                            <p>피로나 상처로 악화된 몸의 컨디션을 간단한 방법으로 회복시켜주는 스킬이다.</p>
+                            <button class="keywordName" id="keyRangeattack" onclick="printdialog(this.id);">원거리 공격</button>
+                            <p>근거리 공격으로는 어떻게 할 수 없는 멀리 떨어져 있는 적을 공격하는 방법. 자세한 정보는 마을 주민을 만나 대화를 해보자.</p>
+                            <button class="keywordName" id="keyPerformSkill" onclick="printdialog(this.id);">악기 연주 스킬</button>
+                            <p>곡을 연주하기 위해서는 악기를 다룰 줄 알아야한다. 각자 자신에게 맞는 악기를 하나쯤 구입해보는 건 어떨까?</p>
+                            <button class="keywordName" id="keyCompositionSkill" onclick="printdialog(this.id);">작곡 스킬</button>
+                            <p>잡화점에서 파는 악보를 직접 쓸 수 있는 스킬이다. 이에 관</p>
+                        </div>
+                        <div class="keywordPage" style="display: none;" data-page="5">
+                            <p>한 책을 읽어보는 건 어떨까?</p>
+                            <button class="keywordName" id="keyMakingclothesSkill" onclick="printdialog(this.id);">천옷만들기 스킬</button>
+                            <p>옷감을 이용해서 옷을 만드는 기술이다. 관련한 아이템을 통해 좀 더 많은 정보를 얻을 수 있을 거 같다.</p>
+                            <button class="keywordName" id="keyMagnumshotSkill" onclick="printdialog(this.id);">매그넘샷 스킬</button>
+                            <p>멀리 있는 적에게 큰 타격을 줄 수 있도록 활을 강력하게 쏘는 방법이다. 마을 주민과의 대화를 통해 정보를 더 얻을 수 있을 거 같다.</p>
+                            <button class="keywordName" id="keyCounterattackSkill" onclick="printdialog(this.id);">카운터 어택</button>
+                            <p>상대방의 공격을 반격하는 스킬. 일반 공격과 스매시 공격을 반격할 수 있다. 마을 주민 중 누군가로부터 정보를 얻을 수 있을지도 모른다.</p>
+                            <button class="keywordName" id="keySmashSkill" onclick="printdialog(this.id);">스매시 스킬</button>
+                            <p>상시 갖고 있던 공격력을 하나로 응집해 상대를 공격하는</p>
+                        </div>
+                        <div class="keywordPage" style="display: none;" data-page="6">
+                            <p>스킬. 마을 주민들과 직접 이야기를 나눠보자.</p>
+                            <button class="keywordName" id="keyCollection" onclick="printdialog(this.id);">채집</button>
+                            <p>자연이나 동물에게서 사람이 필요한 재료를 얻는 방법.</p>
+                            <button class="keywordName" id="keySquare" onclick="printdialog(this.id);">광장</button>
+                            <p>많은 사람들이 모일 수 있도록 넓게 만든 터.</p>
+                            <button class="keywordName" id="keyReservoir" onclick="printdialog(this.id);">저수지</button>
+                            <p>마을에서 필요한 물을 모아 두는 장소.</p>
+                            <button class="keywordName" id="keyFarmland" onclick="printdialog(this.id);">농경지</button>
+                            <p>농부들이 곡식을 얻기 위해 일하는 장소.</p>
+                            <button class="keywordName" id="keyWindmill" onclick="printdialog(this.id);">풍차</button>
+                            <p>바람의 힘으로 날개를 돌려 곡식을 빻거나 물을 퍼올리는 역할을 하는 시설물.</p>
+                            <button class="keywordName" id="keyAdeliariver" onclick="printdialog(this.id);">아델리아 천</button>
+                        </div>
+                        <div class="keywordPage" style="display: none;" data-page="7">
+                            <p>티르 코네일 마을 동쪽을 흐르는 작은 내울.</p>
+                            <button class="keywordName" id="keyChiefhouse" onclick="printdialog(this.id);">촌장의 집</button>
+                            <p>마을을 이뜨는 총장이 사는 집. 촌장을 만날 때는 예의를 갖춰 만나는 것이 좋겠다.</p>
+                            <button class="keywordName" id="keyChurch" onclick="printdialog(this.id);">성당</button>
+                            <p>성당은 신을 섬기는 곳. 종교적인 문제로 상담이 필요할 경우 도움을 얻을 수 있다고 한다.</p>
+                            <button class="keywordName" id="keySchool" onclick="printdialog(this.id);">학교</button>
+                            <p>기술을 익히거나 무언가를 알고 싶을 때 요긴한 장소. 입학해서 학생이 되면 선생님이 알고 싶어하는 것을 알려준다.</p>
+                            <button class="keywordName" id="keyWindmillSkill" onclick="printdialog(this.id);">윈드밀 스킬</button>
+                            <p>여러 명의 적을 한 번에 공격하기에 유용한 전투 스킬이다. 마을 주민과의 대화를 통</p>
+                        </div>
+                        <div class="keywordPage" style="display: none;" data-page="8">
+                            <p>해 좀 더 구체적인 내용을 알아보자.</p>
+                            <button class="keywordName" id="keyCampfireSkill" onclick="printdialog(this.id);">캠프파이어 스킬</button>
+                            <p>캠프파이어를 피울 수 있는 스킬이 있다고 한다.</p>
+                            <button class="keywordName" id="keyRestaurant" onclick="printdialog(this.id);">식당</button>
+                            <p>이 마을에 있는 식당에 대해 이것저것 이야기해보자.</p>
+                            <button class="keywordName" id="keyWeaponstore" onclick="printdialog(this.id);">무기점</button>
+                            <p>무기를 파는 곳이 이 마을 어디쯤에 있는지 물어보자.</p>
+                            <button class="keywordName" id="keyClothingstore" onclick="printdialog(this.id);">의류점</button>
+                            <p>옷 같은 것을 어디서 사는지 궁금하다. 가까운 의류점에 대해 이야기해보자.</p>
+                            <button class="keywordName" id="keyBookstore" onclick="printdialog(this.id);">서점</button>
+                            <p>무엇이든 좋으니 책이 필요하다. 책을 어디 가서 구할 수 있는지 물어보자.</p>
+                        </div>
+                        <div class="keywordPage" style="display: none;" data-page="9">
+                            <button class="keywordName" id="keyGovernmentoffice," onclick="printdialog(this.id);">관청</button>
+                            <p>이 마을의 관청에 대해 이야기를 나누어보자.</p>
+                            <button class="keywordName" id="keyCemetery" onclick="printdialog(this.id);">묘지</button>
+                            <p>티르 코네일 던컨 촌장의 집 뒤편에는 묘지가 있는 모양이다.</p>
+                            <button class="keywordName" id="keyFishingSkill" onclick="printdialog(this.id);">낚시 스킬</button>
+                            <p>물가에서 낚시대에 미끼를 꿰어 물고기를 낚는 스킬이다.</p>
+                        </div>
+                        <div class="keywordPage" id="HighConversation" style="display: none;" data-page="10">
+                            <p style="text-align: center;"><br>**고급회화**<br></p>
+                            <button class="keywordName" id="keyBow" onclick="printdialog(this.id);">활</button>
+                            <p>활을 사용하면 멀리 떨어져 있는 적도 쉽게 공격할 수 있다고 한다. 이런 종류의 무기에 관해서는 무기점이나 대장간을 찾아가면 더 많은 정보를 얻을 수 있다.</p>
+                            <button class="keywordName" id="keyLute" onclick="printdialog(this.id);">류트</button>
+                            <p>이 주변에서 가장 쉽게 구할 수 있는 악기라고 한다. 잡화점에서 판다는 이야기를 들었다.</p>
+                            <button class="keywordName" id="keyDecoy" onclick="printdialog(this.id);">바람잡이</button>
+                            <p>티르 코네일의 트레보는 그런사람이었군? 실망이다. 따져봐야겠다</p>
+                            <button class="keywordName" id="keyTirNaNog" onclick="printdialog(this.id);">티르 나 노이</button>
+                            <p>질병이나 죽음이 존재하지 않는 젊음의 땅. 영원한 낙원을</p>
+                        </div>
+                        <div class="keywordPage" style="display: none;" data-page="11">
+                            <p>뜻하는 말.</p>
+                            <button class="keywordName" id="keyMabinogi" onclick="printdialog(this.id);">마비노기</button>
+                            <p>음유시인의 노래를 뜻하는 말. 어머니들이 아이들을 재울 때 불러주는 줄거리가 있는 자장가를 이야기하기도 한다.</p>
+                            <button class="keywordName" id="keySheetmusic" onclick="printdialog(this.id);">악보</button>
+                            <p>선물을 기호로 바꾸어 종이에 적은 것. 쓰고 읽은 데 모두 특별한 기술이 필요하다고 한다.</p>
+                            <button class="keywordName" id="keySpiritweaponContract" onclick="printdialog(this.id);">정령 무기의 계약</button>
+                            <p>정령을 무기에 깃들게 하는 방법에 대한 이야기. 관심이 있다면 베이릭시드나 타르라크, 도렌에게 물어보자.</p>
+                            <button class="keywordName" id="keyElfandGiant" onclick="printdialog(this.id);">엘프와 자이언트</button>
+                            <p>엘프와 자이언트는 옛부터 대립 관계였다고 한다. 두 종족 중 누구를 지지해야 할 지 선</p>
+                        </div>
+                        <div class="keywordPage" style="display: none;" data-page="12">
+                            <p>택하고 싶다면 이 키워드를 사용해 마을의 수장에게 물어보자.</p>
+                            <button class="keywordName" id="keyJewel" onclick="printdialog(this.id);">보석</button>
+                            <p>야금술을 통해 얻을 수 있는 보석은 그 크기에 따라 가치가 달라지기도 한다. 보석을 NPC나 정령에게 선물해보는건 어떨까?</p>
+                            <button class="keywordName" id="keySpiritweaponMove" onclick="printdialog(this.id);">정령 무기의 이전</button>
+                            <p>무기에 깃든 고대의 정령을 다른 무기로 옮기는 법에 대한 이야기. 관심이 있다면 베이릭시드나 타르라크, 도렌에게 물어보자.</p>
+                            <button class="keywordName" id="keyPapershuriken" onclick="printdialog(this.id);">종이 수리검</button>
+                            <p>하기와 안즈의 추억이 담긴 물건. 서로에게 어떤 의미 일까?</p>
+                        </div>
+                        <div class="keywordPage" id="InfoConversation" style="display: none;" data-page="13">
+                            <p style="text-align: center;"><br>**정보메모**<br></p>
+                            <button class="keywordName" id="keySpiritfossil" onclick="printdialog(this.id);">고대 정령의 화석</button>
+                            <p>고대 정령의 화석을 구하면 아이데른이 정령석을 정련해 준다고 한다. 통행증에 대해 길모어에게 물어보자.</p>
+                            <button class="keywordName" id="keyFletaerrand" onclick="printdialog(this.id);">플레타의 심부름</button>
+                            <p>플레타로부터 상자에 넣을 '향신료', '밤에도 빛을 내는 꽃', '천사가 키우는 약초'를 부탁 받았다. 이멘 마하의 사람들에게 이 키워드로 물어보자.</p>
+                            <button class="keywordName" id="keyNele" onclick="printdialog(this.id);">로에이즈의 제자 네일</button>
+                            <p>로에이즈는 자신의 저서인 에린의 음악가들에서 네일이 자신의 제자라는 언급을 했다. 네일에게 여기에 대해 물어보자.</p>
+                            <button class="keywordName" id="keyMemorialtower" onclick="printdialog(this.id);">메모리얼 타워</button>
+                        </div>
+                        <div class="keywordPage" style="display: none;" data-page="14">
+                            <p>엘프들이 지성을 공유하는 거대한 탑.</p>
+                            <button class="keywordName" id="keyGoTirNaNog" onclick="printdialog(this.id);">티르 나 노이에 가는 법</button>
+                            <p>빨리 여신이 있는 곳인 티르 나 노이로 가는 방법을 알아내지 않으면 이 세계는 파멸의 불길에 휩싸이게 된다고 한다. 그 방법은 그곳에 갔다 온 사람이 제일 잘 알 것이다.</p>
+                            <button class="keywordName" id="keyPresentforNao" onclick="printdialog(this.id);">나오에게 선물</button>
+                            <p>항상 도와주는 나오에게 선물을 주자. 그런데 뭘 주면 좋을까?</p>
+                            <button class="keywordName" id="keyVioletgrave" onclick="printdialog(this.id);">바이올렛이 놓인 무덤</button>
+                            <p>탈틴 묘지에 놓인 바이올렛에 대해 마을 사람들에게 물어보자</p>
+                            <button class="keywordName" id="keyTearsoftheSpirit" onclick="printdialog(this.id);">정령의 눈물</button>
+                            <p>수호의 부적 재료인 정령의 눈물에 대해 정령 무기에게 물어보자.</p>
+                        </div>
+                        <div class="keywordPage" style="display: none;" data-page="15">
+                            <button class="keywordName" id="keyAmulet" onclick="printdialog(this.id);">다크 나이트의 호신부</button>
+                            <p>알 수 없는 짐승의 검은 털로 만든 호신부. 블랙위자드는 이것을 바리 던전에 넣어 다크나이트가 어떤 존재인지 알 수 있다고 했다. 만약 잃어버렸다면 바리 던전과 가장 가까운 곳에 있는, 통행증을 취급하는 마을 사람과 이야기를 해보자.</p>
+                            <button class="keywordName" id="keyShortstories" onclick="printdialog(this.id);">이상한 고르반의 단편집</button>
+                            <p>한 적도 없는 내 사인이 단편집에 남아 있다. 호기심에 책을 펼치자 코 끝으로 독특한 잉크 냄새가 맴돈다. 이 냄새... 아본에서 맡아본 냄새다! 아본의 말로에게 책에 대해 물어보자.</p>
+                            <button class="keywordName" id="keyDarkknight" onclick="printdialog(this.id);">다크 나이트</button>
+                            <p>인간의 분노와 슬픔을 힘의 근원으로 삼는 기사. 타락한 빛의 기사라는 이야기도 있다.</p>
+                        </div>
+                        <div class="keywordPage" style="display: none;" data-page="16">
+                            <button class="keywordName" id="keyLogan" onclick="printdialog(this.id);">로간</button>
+                            <p>벨테인의 견습 기사 로간. 다른 견습 기사들에게는 형이나 오빠같은 존재이겠지?</p>
+                            <button class="keywordName" id="keyDai" onclick="printdialog(this.id);">디이</button>
+                            <p>벨테인의 견습기사 디이. 이 녀석이 말썽을 일으키지 않게 잡아 줄 사람 어디 없나?</p>
+                            <button class="keywordName" id="keyAlltur" onclick="printdialog(this.id);">알터</button>
+                            <p>아르후안 조의 조원급 기사인 알터에 관해 물어보자.</p>
+                            <button class="keywordName" id="keyAveline" onclick="printdialog(this.id);">아벨린</button>
+                            <p>아르후안 조의 조장급 기사인 아벨린에 관해 물어보자.</p>
+                            <button class="keywordName" id="keyTorvish" onclick="printdialog(this.id);">톨비쉬</button>
+                            <p>엘베드 조의 조장급 기사 였던, 수호자 톨비쉬에 관해 물어보자.</p>
+                            <button class="keywordName" id="keyCaswyn" onclick="printdialog(this.id);">카즈윈</button>
+                        </div>
+                        <div class="keywordPage" style="display: none;" data-page="17">
+                            <p>헤루인 조의 조장급 기사인 카즈윈에 관해 물어보자.</p>
+                            <button class="keywordName" id="keyPihnne" onclick="printdialog(this.id);">피네</button>
+                            <p>에일레르 조의 조장급 기사인 피네에 관해 물어보자.</p>
+                            <button class="keywordName" id="keyLlywelyn" onclick="printdialog(this.id);">르웰린</button>
+                            <p>아르후안 조의 조원급 기사인 르웰린에 관해 물어보자.</p>
+                            <button class="keywordName" id="keyPirran" onclick="printdialog(this.id);">피르안</button>
+                            <p>하이미라크 교단의 신도이자 테흐 두인 원정대에 소속된 피르안에 관해 물어보자.</p>
+                            <button class="keywordName" id="keyMared" onclick="printdialog(this.id);">마르에드</button>
+                            <p>에일라흐의 국왕 에레원의 호위병이자 테흐 두인 원정대에 소속된 마르에드에 관해 물어보자.</p>
+                            <button class="keywordName" id="keyCethlenn" onclick="printdialog(this.id);">케흘렌</button>
+                            <p>테흐 두인의 감시자, 케흘렌에 관해 물어보자</p>
+                        </div>
+                        <div class="keywordPage" style="display: none;" data-page="18">
+                            <button class="keywordName" id="keyBein" onclick="printdialog(this.id);">베임네크</button>
+                            <p>검은 달의 교단의 간부였던 베인... 베임네크에 관해 물어보자.</p>
+                            <button class="keywordName" id="keyMuiriol" onclick="printdialog(this.id);">미르올</button>
+                            <p>호기심 많고 상냥한 엘프이자 테흐 두인 원정대에 소속된 미르올에 관해 물어보자.</p>
+                            <button class="keywordName" id="keyBhatar" onclick="printdialog(this.id);">바투르</button>
+                            <p>활발하고 씩씩한 자이언트이자 테흐 두인 원정대에 소속된 바투르에 관해 물어보자.</p>
+                            <button class="keywordName" id="keyMemoriesofBlony" onclick="printdialog(this.id);">블로니의 기억</button>
+                            <p>블로니의 기억을 찾기 위해선 어떻게 해야할까? 블로니에게 물어보자.</p>
+                            <button class="keywordName" id="keyBlonymemoryofMilletian" onclick="printdialog(this.id);">밀레시안에 대한 블로니의 기억</button>
+                            <p>블로니에게 밀레시안은 어떤 기억이 있을까? 블로니에게</p>
+                        </div>
+                        <div class="keywordPage" style="display: none;" data-page="19">
+                            <p>물어보자.</p>
+                            <button class="keywordName" id="keyBlonymemoryofEirinn" onclick="printdialog(this.id);">에린에 대한 블로니의 기억</button>
+                            <p>블로니에게 에린은 어떤 기억이 있을까? 블로니에게 물어보자.</p>
+                            <button class="keywordName" id="keyMemoirs" onclick="printdialog(this.id);">추억담</button>
+                            <p>추억담에 담긴 의미와 사용법이 궁금하다. 블로니에게 물어보자.</p>
+                            <!--
+                            <button class="keywordName" id="key" onclick="printdialog(this.id);">키워드</button>
+                            <p>설명</p>
+                            -->
+                        </div>
+                    </div>
+                    <button class="changeConversation" id="changeBasic" onclick="changeCon(this.id)"></button>
+                    <button class="changeConversation" id="changeMedium"onclick="changeCon(this.id)"></button>
+                    <button class="changeConversation" id="changeHigh"onclick="changeCon(this.id)"></button>
+                    <button class="changeConversation" id="changeInfo"onclick="changeCon(this.id)"></button>
+                    <div id="pagePrev" onclick="handlePageClick(event, 'prev')"></div>
+                    <div id="pageNext" onclick="handlePageClick(event, 'next')"></div>
+                </div>
+            </div>
+        </div>
+        <script src="./script.js"></script>
+        <script src="./dialog.js"></script>
+    </body>
+</html>
