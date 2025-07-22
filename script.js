@@ -204,23 +204,23 @@ class BlinkController {
         // 눈 감기
         setTimeout(() => {
             portrait.src = originalSrc.replace('.png', '2.png');
-        }, 0);
+        }, 1000);
         
         // 완전히 감기
         setTimeout(() => {
             portrait.src = originalSrc.replace('.png', '3.png');
-        }, 100);
+        }, 2000);
         
         // 눈 뜨기
         setTimeout(() => {
             portrait.src = originalSrc.replace('.png', '2.png');
-        }, 200);
+        }, 3000);
         
         // 원래대로
         setTimeout(() => {
             portrait.src = originalSrc;
             this.isBlinking = false;
-        }, 300);
+        }, 4000);
     }
     
     stop() {
