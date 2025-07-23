@@ -178,3 +178,9 @@ body{
     z-index: 15;
     display: none;
 }
+
+#pageNumdering{
+    position: absolute;
+    bottom: 14px;
+    right: 52px;
+}
