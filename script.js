@@ -1,6 +1,6 @@
 /* 페이지 넘김 */
 let Nowpage = 1;
-let MaxPage = 19;
+let MaxPage = 20; // 페이지 추가시 숫자 변경
 
 function handlePageClick(event, direction) {
     // 클릭된 요소가 keywordName 버튼인지 확인
@@ -24,7 +24,7 @@ function handlePageClick(event, direction) {
         }
     }
     
-    pageMove(Nowpage);
+    pageMove(Nowpage, MaxPage);
 }
 
 function pageReset() {
@@ -35,9 +35,10 @@ function pageReset() {
     }
 }
 
-function pageMove(pageIndex) {
+function pageMove(pageIndex,MaxPage) {
     pageReset();
     document.querySelector('div[data-page="' + pageIndex + '"]').style.display = "block";
+    document.getElementById('pageNumdering').innerText = pageIndex + " / " + MaxPage;
 }
 
 
@@ -63,7 +64,7 @@ function changeCon(id){
 
     Conversation.style.display = 'block';
     Nowpage = Conversation.dataset.page;
-    pageMove(Nowpage);
+    pageMove(Nowpage, MaxPage);
 }
 
 /* 대사 출력 */
@@ -72,6 +73,7 @@ function printdialog(loglist){
 
     var log = list[Math.floor(Math.random() * list.length)]; // 받은 리스트 중에 하나를 랜덤으로 log에 저장
     var logs = log.split('/'); //log에 저장된 대사를 /를 기준으로 나눠 logs에 저장
+    console.log(logs.length);
 
     /*표정 교체*/
     var face = logs[0];
@@ -80,27 +82,17 @@ function printdialog(loglist){
     document.getElementById('name').style.display = 'block'; // 이름을 보이게
     document.getElementById('dialogue').innerHTML = logs[1]; //나눈 대사중 첫번째를 출력
 
-    if(logs.length === 3){ //만약 대사가 2개로 나뉘어 있을 때
-        //여행수첩, 대화 끝내기를 끄고 계속하기를 킴
-        document.getElementById('logContinue').style.display = 'inline-block';
-        document.getElementById('logEnd').style.display = 'none';
-        document.getElementById('keywordBox').style.display = 'none';
+    if(logs.length == 3){ //만약 대사가 2개 이상일 때
+        dialogueBtnOn();
 
         document.getElementById('logContinue').onclick = function () { //계속하기를 누를 경우
             //나눈 대사 중 두번째를 출력
             document.getElementById('dialogue').innerHTML = logs[2];
-            
-            //여행수첩, 대화 끝내기를 켜고 계속하기를 끔
-            document.getElementById('logContinue').style.display = 'none';
-            document.getElementById('logEnd').style.display = 'inline-block';
-            document.getElementById('keywordBox').style.display = 'block';
+            dialogueBtnOff();
         };
-    }
-    else if(logs.length === 4){ //만약 대사가 3개로 나뉘어 있을 때
+    }else if(logs.length == 4){ //만약 대사가 3개로 나뉘어 있을 때
         //여행수첩, 대화 끝내기를 끄고 계속하기를 킴
-        document.getElementById('logContinue').style.display = 'inline-block';
-        document.getElementById('logEnd').style.display = 'none';
-        document.getElementById('keywordBox').style.display = 'none';
+        dialogueBtnOn();
 
         //계속하기를 누를 경우
         document.getElementById('logContinue').onclick = function () {
@@ -111,14 +103,22 @@ function printdialog(loglist){
             document.getElementById('logContinue').onclick = function () { 
                 //나눈 대사 중 세번째를 출력
                 document.getElementById('dialogue').innerHTML = logs[3];
-                
                 //여행수첩, 대화 끝내기를 켜고 계속하기를 끔
-                document.getElementById('logContinue').style.display = 'none';
-                document.getElementById('logEnd').style.display = 'inline-block';
-        document.getElementById('keywordBox').style.display = 'block';
+                dialogueBtnOff();
             };
         };
     }
+}
+
+function dialogueBtnOn(){
+    document.getElementById('logContinue').style.display = 'inline-block';
+    document.getElementById('logEnd').style.display = 'none';
+    document.getElementById('keywordBox').style.display = 'none';
+}
+function dialogueBtnOff(){
+    document.getElementById('logContinue').style.display = 'none';
+    document.getElementById('logEnd').style.display = 'inline-block';
+    document.getElementById('keywordBox').style.display = 'block';
 }
 
 /* 여행수첩 옮기는 기능 */
@@ -191,7 +191,7 @@ class BlinkController {
     }
     
     getRandomBlinkInterval() {
-        return Math.random() * 3000 + 2000; // 2초~5초
+        return Math.random() * 4000 + 3000; // 2초~5초
     }
     
     doBlink() {
@@ -204,23 +204,23 @@ class BlinkController {
         // 눈 감기
         setTimeout(() => {
             portrait.src = originalSrc.replace('.png', '2.png');
-        }, 0);
+        }, 100);
         
         // 완전히 감기
         setTimeout(() => {
             portrait.src = originalSrc.replace('.png', '3.png');
-        }, 100);
+        }, 200);
         
         // 눈 뜨기
         setTimeout(() => {
             portrait.src = originalSrc.replace('.png', '2.png');
-        }, 200);
+        }, 300);
         
         // 원래대로
         setTimeout(() => {
             portrait.src = originalSrc;
             this.isBlinking = false;
-        }, 300);
+        }, 400);
     }
     
     stop() {
