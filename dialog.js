@@ -53,7 +53,7 @@ function dialogList(loglist){
 
     /* 초급 회화 */
     let keyTalk =[
-        "기본/리레보다 어둡고/다크브라운레드보다는/밝은 레드는 없는걸까...",
+        "먼눈/리레보다 어둡고 다크브라운레드보다는 밝은 레드는 없는걸까...",
         "기본/월석도 치워야하는데, 귀찮지. 재료도 비싸고."
     ];
 
@@ -67,7 +67,7 @@ function dialogList(loglist){
     ];
 
     let keyParttime = [
-        "기본/"
+        "기본/아르바이트를 열 수 있다면... 뭘 여는 게 좋을려나. 허브 채집?"
     ];
 
     let keyClass=[
@@ -101,7 +101,31 @@ function dialogList(loglist){
 
     let keyspiritEskel = [
         "기본/에스켈은 상냥한 정령이야. 여태 못 챙겨준게 걸리네.", 
-        "기본/에스켈은 내 첫번째 정령이라 그런지 여기저기 자주 옮겨다녔지./한손 검이였다가 체인에 들어갔기도 했고... 대낫에서 지금은 랜스로 들어왔어.", 
+        "기본/에스켈은 내 첫번째 정령이라 그런지 여기저기 자주 옮겨다녔지./한손 검이였다가 체인에 들어갔기도 했고... 낫에서 지금은 랜스로 들어왔어.", 
+    ];
+
+    let keyspiritBerengar = [
+        "기본/가장 친한 정령은 베렌가겠지. 한동안 듀얼건을 엄청 썼으니까./요즘엔 랜스를 쓰니까 잘 못 챙겨주긴 했어."
+    ];
+
+    let keyspiritGeralt = [
+        "기본/가장 편한 정령하면 역시 게롤트일까./제일 조용하니까, 조금 어색하긴 하지만."
+    ];
+    
+    let keyspiritIrey = [
+        "미소/친절하고 귀여운 정령이지./말을 걸 때마다 무언가 알려주려고 해서 꽤 즐겁게 듣고 있고."
+    ];
+
+    let keyspiritLeo = [
+        "기본/가끔 혼자 너무 동떨어진 이름을 지어준걸까하는 고민이 드네. 별로 신경쓰는 거 같진 않지만./안 쓰는 거 맞겠지?"
+    ];
+
+    let keyspiritMilva = [
+        "기본/에스켈이랑 같은 보석을 좋아해서 고민이였던 때도 있는데.... 지금은 많이 생겨서 괜찮아졌어."
+    ];
+    
+    let keyDarkknight = [
+        "기본/별로 좋은 기억은 없지만... 이해는 해."
     ];
 
     let keyPresentforNao = [
@@ -158,7 +182,13 @@ function dialogList(loglist){
         case 'keyTirNaNog': return keyTirNaNog; // 티르 나 노이
         /* 정보 메모 */
         case 'keyTearsoftheSpirit' : return keyTearsoftheSpirit // 정령의 눈물
-        case 'keyspiritEskel' : return keyspiritEskel; //에스켈
+        case 'keyspiritEskel' : return keyspiritEskel; // 에스켈
+        case 'keyspiritBerengar' : return keyspiritBerengar; // 베렌가
+        case 'keyspiritGeralt' : return keyspiritGeralt; // 게롤트
+        case 'keyspiritIrey' : return keyspiritIrey; // 아이리
+        case 'keyspiritLeo' : return keyspiritLeo; // 레오
+        case 'keyspiritMilva' : return keyspiritMilva; // 밀바
+        case 'keyDarkknight' : return keyDarkknight; // 다크나이트
         case 'keyPresentforNao': return keyPresentforNao; // 나오에게 선물
         case 'keyAlltur': return keyAlltur; // 알터
         case 'keyAveline': return keyAveline; // 아벨린
